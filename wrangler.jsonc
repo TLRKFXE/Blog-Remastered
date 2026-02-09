@@ -1,4 +1,6 @@
 {
+  // 替换为你的 Worker 名称（自定义）
+  // 兼容日期（可保留当前日期，Cloudflare 会匹配对应版本）
   "name": "tlrk",
   "compatibility_date": "2026-02-09",
   "assets": {
