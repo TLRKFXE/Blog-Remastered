@@ -62,16 +62,17 @@ onMounted(async () => {
 #ascii-output {
   margin: 0;
   padding: 0;
-  font-family: Consolas, 'Courier New', ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+  font-family: Consolas, "Courier New", ui-monospace, SFMono-Regular, Menlo,
+    Monaco, monospace;
   font-size: 5.56px;
   line-height: 0.96;
-  letter-spacing: 0;
+  letter-spacing: 0.5px;
   word-spacing: 0;
   white-space: pre;
   overflow: hidden;
   font-kerning: none;
   font-variant-ligatures: none;
-  font-feature-settings: 'liga' 0, 'calt' 0;
+  font-feature-settings: "liga" 0, "calt" 0;
   text-size-adjust: none;
   -webkit-text-size-adjust: none;
 }
