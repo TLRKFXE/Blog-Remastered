@@ -1,0 +1,169 @@
+:root {
+  --c-bg: #ffffff;
+  --c-bg-soft: #f6f6f6;
+  --c-bg-mute: #eeeeee;
+  --c-text: #2c3e50;
+  --c-text-light: #6a8bad;
+  --c-text-lighter: #999999;
+  --c-border: #e5e5e5;
+  --c-brand: #3eaf7c;
+
+  /* Glass */
+  --glass-bg: rgba(255, 255, 255, 0.72);
+  --glass-border: rgba(0, 0, 0, 0.06);
+  --glass-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+
+  /* Scrollbar */
+  --scrollbar-bg: transparent;
+  --scrollbar-thumb: rgba(0, 0, 0, 0.15);
+}
+
+html.dark {
+  --c-bg: #050505;
+  --c-bg-soft: #111111;
+  --c-bg-mute: #1a1a1a;
+  --c-text: #d4d4d4;
+  --c-text-light: #888888;
+  --c-text-lighter: #555555;
+  --c-border: #222222;
+  --c-brand: #42d392;
+
+  /* Glass dark */
+  --glass-bg: rgba(20, 20, 20, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --glass-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+
+  --scrollbar-thumb: rgba(255, 255, 255, 0.15);
+}
+
+html {
+  color-scheme: light;
+  scroll-behavior: smooth;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background-color: var(--c-bg);
+  color: var(--c-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html.theme-transitioning,
+html.theme-transitioning *,
+html.theme-transitioning *::before,
+html.theme-transitioning *::after {
+  transition-property: color, background-color, border-color, fill, stroke, box-shadow;
+  transition-duration: 0.38s;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html.theme-radial-transition .theme-transition-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  pointer-events: none;
+  background: var(--c-bg);
+}
+
+/* Selection */
+::selection {
+  background: rgba(62, 175, 124, 0.2);
+}
+
+html.dark ::selection {
+  background: rgba(66, 211, 146, 0.2);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 3px;
+}
+
+/* NProgress */
+#nprogress {
+  pointer-events: none;
+}
+
+#nprogress .bar {
+  background: var(--c-brand);
+  position: fixed;
+  z-index: 1031;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+}
+
+/* Slide-enter animation */
+@keyframes slide-enter {
+  0% {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slide-enter-content > *:nth-child(1) { --enter-stage: 1; }
+.slide-enter-content > *:nth-child(2) { --enter-stage: 2; }
+.slide-enter-content > *:nth-child(3) { --enter-stage: 3; }
+.slide-enter-content > *:nth-child(4) { --enter-stage: 4; }
+.slide-enter-content > *:nth-child(5) { --enter-stage: 5; }
+.slide-enter-content > *:nth-child(6) { --enter-stage: 6; }
+.slide-enter-content > *:nth-child(7) { --enter-stage: 7; }
+.slide-enter-content > *:nth-child(8) { --enter-stage: 8; }
+.slide-enter-content > *:nth-child(9) { --enter-stage: 9; }
+.slide-enter-content > *:nth-child(10) { --enter-stage: 10; }
+.slide-enter-content > *:nth-child(11) { --enter-stage: 11; }
+.slide-enter-content > *:nth-child(12) { --enter-stage: 12; }
+.slide-enter-content > *:nth-child(13) { --enter-stage: 13; }
+.slide-enter-content > *:nth-child(14) { --enter-stage: 14; }
+.slide-enter-content > *:nth-child(15) { --enter-stage: 15; }
+.slide-enter-content > *:nth-child(16) { --enter-stage: 16; }
+.slide-enter-content > *:nth-child(17) { --enter-stage: 17; }
+.slide-enter-content > *:nth-child(18) { --enter-stage: 18; }
+.slide-enter-content > *:nth-child(19) { --enter-stage: 19; }
+.slide-enter-content > *:nth-child(20) { --enter-stage: 20; }
+
+.slide-enter-content > * {
+  --enter-stage: 0;
+  --enter-step: 60ms;
+  animation: slide-enter 0.6s both 1;
+  animation-delay: calc(var(--enter-stage) * var(--enter-step));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide-enter-content > * {
+    animation: none;
+  }
+
+  html.theme-transitioning,
+  html.theme-transitioning *,
+  html.theme-transitioning *::before,
+  html.theme-transitioning *::after {
+    transition: none !important;
+  }
+}
+
+/* Link hover underline */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
