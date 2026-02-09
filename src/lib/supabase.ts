@@ -1,7 +1,15 @@
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
+function normalizeEnvValue(value: string | undefined) {
+  if (!value)
+    return ''
+
+  const trimmed = value.trim()
+  return trimmed.replace(/^['"](.*)['"]$/, '$1').trim()
+}
+
+const supabaseUrl = normalizeEnvValue(import.meta.env.VITE_SUPABASE_URL)
+const supabaseAnonKey = normalizeEnvValue(import.meta.env.VITE_SUPABASE_ANON_KEY)
 
 function isValidHttpUrl(value: string | undefined) {
   if (!value)
@@ -32,7 +40,7 @@ const safeSupabaseAnonKey = supabaseAnonKey || 'public-anon-placeholder'
 
 export const supabase = createClient(safeSupabaseUrl, safeSupabaseAnonKey)
 
-export const ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL || ''
+export const ADMIN_EMAIL = normalizeEnvValue(import.meta.env.VITE_ADMIN_EMAIL)
 
 export function isAllowedAdminEmail(email: string | null | undefined) {
   if (!email || !ADMIN_EMAIL)
