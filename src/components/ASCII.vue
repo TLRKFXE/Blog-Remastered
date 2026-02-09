@@ -77,10 +77,10 @@ onMounted(async () => {
   -webkit-text-size-adjust: none;
 }
 
-#ascii-output :deep(span) {
+/* #ascii-output :deep(span) {
   display: inline-block;
   width: 1ch;
-}
+} */
 
 @media (min-width: 1024px) {
   #ascii-output {

@@ -3,6 +3,10 @@ import { ref, onMounted, onUnmounted } from 'vue'
 
 const canvas = ref<HTMLCanvasElement>()
 let animationId: number
+let viewportWidth = 0
+let viewportHeight = 0
+let context: CanvasRenderingContext2D | null = null
+let resizeHandler: (() => void) | null = null
 let flakes: { x: number; y: number; size: number; opacity: number; speed: number; drift: number }[] = []
 
 function initFlakes(width: number, height: number) {
@@ -17,7 +21,14 @@ function initFlakes(width: number, height: number) {
   }))
 }
 
-function draw(ctx: CanvasRenderingContext2D, width: number, height: number) {
+function draw() {
+  if (!context)
+    return
+
+  const ctx = context
+  const width = viewportWidth
+  const height = viewportHeight
+
   ctx.clearRect(0, 0, width, height)
 
   for (const f of flakes) {
@@ -42,34 +53,42 @@ function draw(ctx: CanvasRenderingContext2D, width: number, height: number) {
     ctx.fill()
   }
 
-  animationId = requestAnimationFrame(() => draw(ctx, width, height))
+  animationId = requestAnimationFrame(draw)
 }
 
 onMounted(() => {
   const el = canvas.value
   if (!el) return
 
+  const ctx = el.getContext('2d')
+  if (!ctx) return
+
+  context = ctx
+
   const resize = () => {
     const dpr = window.devicePixelRatio || 1
-    el.width = window.innerWidth * dpr
-    el.height = window.innerHeight * dpr
-    el.style.width = `${window.innerWidth}px`
-    el.style.height = `${window.innerHeight}px`
-    const ctx = el.getContext('2d')!
-    ctx.scale(dpr, dpr)
-    initFlakes(window.innerWidth, window.innerHeight)
+    viewportWidth = window.innerWidth
+    viewportHeight = window.innerHeight
+
+    el.width = Math.floor(viewportWidth * dpr)
+    el.height = Math.floor(viewportHeight * dpr)
+    el.style.width = `${viewportWidth}px`
+    el.style.height = `${viewportHeight}px`
+
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+    initFlakes(viewportWidth, viewportHeight)
   }
 
+  resizeHandler = resize
   resize()
   window.addEventListener('resize', resize)
+  draw()
+})
 
-  const ctx = el.getContext('2d')!
-  draw(ctx, window.innerWidth, window.innerHeight)
-
-  onUnmounted(() => {
-    cancelAnimationFrame(animationId)
-    window.removeEventListener('resize', resize)
-  })
+onUnmounted(() => {
+  cancelAnimationFrame(animationId)
+  if (resizeHandler)
+    window.removeEventListener('resize', resizeHandler)
 })
 </script>
 
