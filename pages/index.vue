@@ -218,7 +218,11 @@ onUnmounted(() => {
                 :key="btn.label"
                 :to="btn.to"
                 class="hero-btn group"
-                :class="btn.disabled ? 'opacity-45 cursor-not-allowed pointer-events-none' : ''"
+                :class="
+                  btn.disabled
+                    ? 'opacity-45 cursor-not-allowed pointer-events-none'
+                    : ''
+                "
               >
                 <span>{{ btn.label }}</span>
                 <span
@@ -296,8 +300,8 @@ onUnmounted(() => {
 
           <div class="space-y-3">
             <p>
-              <strong>Infrastructure & Delivery:</strong> Cloudflare, Nginx,
-              Docker
+              <strong>Frontend Engineering:</strong> Vue 3, React, Vue Router,
+              Pinia, VueUse, VeeValidate, Yup, Vue Toastification, Faker.js
             </p>
             <p>
               <strong>Backend & API:</strong> Node.js, NestJS, Express.js,
@@ -308,10 +312,6 @@ onUnmounted(() => {
               Sequelize, Drizzle
             </p>
             <p>
-              <strong>Frontend Engineering:</strong> Vue 3, React, Vue Router,
-              Pinia, VueUse, VeeValidate, Yup, Vue Toastification, Faker.js
-            </p>
-            <p>
               <strong>UI & Design Systems:</strong> shadcn/ui, DaisyUI,
               PrimeVue, Inspira UI, Hero UI, Radix UI, Headless UI, Fluent UI,
               Base UI, Material UI, Ant Design, Floating UI
@@ -320,11 +320,19 @@ onUnmounted(() => {
               <strong>Build, Tooling & Quality:</strong> pnpm, Vite, Vitest,
               Tailwind CSS, UnoCSS, Nodemon, ESLint, Prettier
             </p>
+            <p>
+              <strong>Infrastructure & Delivery:</strong> Cloudflare, Nginx,
+              Docker
+            </p>
             <p><strong>Design:</strong> Figma</p>
           </div>
 
           <div class="space-y-3 text-sm opacity-86 leading-relaxed mt-5">
-            <p><strong>基础设施与交付：</strong>Cloudflare、Nginx、Docker</p>
+            <p>
+              <strong>前端工程：</strong>Vue 3、React、Vue
+              Router、Pinia、VueUse、VeeValidate、Yup、Vue
+              Toastification、Faker.js
+            </p>
             <p>
               <strong>后端与接口：</strong
               >Node.js、NestJS、Express.js、GraphQL、RESTful API、dotenv
@@ -332,11 +340,6 @@ onUnmounted(() => {
             <p>
               <strong>数据层：</strong
               >Supabase、PostgreSQL、Prisma、Sequelize、Drizzle
-            </p>
-            <p>
-              <strong>前端工程：</strong>Vue 3、React、Vue
-              Router、Pinia、VueUse、VeeValidate、Yup、Vue
-              Toastification、Faker.js
             </p>
             <p>
               <strong>UI 与组件体系：</strong
@@ -348,6 +351,7 @@ onUnmounted(() => {
               <strong>构建、工具与规范：</strong>pnpm、Vite、Vitest、Tailwind
               CSS、UnoCSS、Nodemon、ESLint、Prettier
             </p>
+            <p><strong>基础设施与交付：</strong>Cloudflare、Nginx、Docker</p>
             <p><strong>设计协作：</strong>Figma</p>
           </div>
 
