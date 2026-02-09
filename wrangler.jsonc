@@ -1,6 +1,6 @@
 {
   // 替换为你的 Worker 名称（自定义）
-  "name": "blog",
+  "name": "tlrk",
   // 兼容日期（可保留当前日期，Cloudflare 会匹配对应版本）
   "compatibility_date": "2026-02-09",
   // 静态资产配置（核心）
