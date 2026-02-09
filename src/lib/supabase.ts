@@ -1,15 +1,46 @@
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
+function normalizeEnvValue(value: string | undefined) {
+  if (!value)
+    return ''
+
+  const trimmed = value.trim()
+  return trimmed.replace(/^['"](.*)['"]$/, '$1').trim()
+}
+
+const supabaseUrl = normalizeEnvValue(import.meta.env.VITE_SUPABASE_URL)
+const supabaseAnonKey = normalizeEnvValue(import.meta.env.VITE_SUPABASE_ANON_KEY)
+
+function isValidHttpUrl(value: string | undefined) {
+  if (!value)
+    return false
+
+  try {
+    const url = new URL(value)
+    return url.protocol === 'http:' || url.protocol === 'https:'
+  }
+  catch {
+    return false
+  }
+}
 
 if (!supabaseUrl || !supabaseAnonKey) {
   console.warn('[supabase] Missing VITE_SUPABASE_URL or VITE_SUPABASE_ANON_KEY')
 }
 
-export const supabase = createClient(supabaseUrl || '', supabaseAnonKey || '')
+if (supabaseUrl && !isValidHttpUrl(supabaseUrl)) {
+  console.warn('[supabase] VITE_SUPABASE_URL is invalid, expected http/https URL')
+}
 
-export const ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL || ''
+const safeSupabaseUrl = isValidHttpUrl(supabaseUrl)
+  ? supabaseUrl
+  : 'https://example.com'
+
+const safeSupabaseAnonKey = supabaseAnonKey || 'public-anon-placeholder'
+
+export const supabase = createClient(safeSupabaseUrl, safeSupabaseAnonKey)
+
+export const ADMIN_EMAIL = normalizeEnvValue(import.meta.env.VITE_ADMIN_EMAIL)
 
 export function isAllowedAdminEmail(email: string | null | undefined) {
   if (!email || !ADMIN_EMAIL)
@@ -17,4 +48,3 @@ export function isAllowedAdminEmail(email: string | null | undefined) {
 
   return email.toLowerCase() === ADMIN_EMAIL.toLowerCase()
 }
-

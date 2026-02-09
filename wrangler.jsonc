@@ -1,11 +1,10 @@
 {
   // 替换为你的 Worker 名称（自定义）
-  "name": "blog1",
   // 兼容日期（可保留当前日期，Cloudflare 会匹配对应版本）
+  "name": "tlrk",
   "compatibility_date": "2026-02-09",
-  // 静态资产配置（核心）
   "assets": {
-    // 替换为你实际的静态资源目录（必须是存在的目录）
-    "directory": "./dist"
+    "directory": "./dist",
+    "not_found_handling": "single-page-application"
   }
 }

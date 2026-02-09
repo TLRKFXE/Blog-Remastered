@@ -88,6 +88,22 @@ function resetMessage() {
   errorMessage.value = ''
 }
 
+function normalizeEnvValue(value: string | undefined) {
+  if (!value)
+    return ''
+
+  const trimmed = value.trim()
+  return trimmed.replace(/^['\"](.*)['\"]$/, '$1').trim()
+}
+
+function getAdminRedirectUrl() {
+  const configured = normalizeEnvValue(import.meta.env.VITE_AUTH_REDIRECT_TO)
+  if (configured)
+    return configured
+
+  return `${window.location.origin}/admin`
+}
+
 function sanitizeSlug(input: string) {
   return input
     .trim()
@@ -213,7 +229,7 @@ async function sendMagicLink() {
   const { error } = await supabase.auth.signInWithOtp({
     email,
     options: {
-      emailRedirectTo: `${window.location.origin}/admin`,
+      emailRedirectTo: getAdminRedirectUrl(),
     },
   })
 
@@ -478,7 +494,43 @@ async function initializeAdmin() {
   }
 }
 
+async function handleAuthRedirectIfNeeded() {
+  const url = new URL(window.location.href)
+  const hash = window.location.hash.startsWith('#')
+    ? new URLSearchParams(window.location.hash.slice(1))
+    : new URLSearchParams()
+
+  const code = url.searchParams.get('code')
+  const tokenHash = url.searchParams.get('token_hash') || hash.get('token_hash')
+  const type = url.searchParams.get('type') || hash.get('type')
+
+  try {
+    if (code) {
+      const { error } = await supabase.auth.exchangeCodeForSession(code)
+      if (error)
+        throw error
+    }
+    else if (tokenHash && type) {
+      const { error } = await supabase.auth.verifyOtp({
+        token_hash: tokenHash,
+        type: type as any,
+      })
+      if (error)
+        throw error
+    }
+  }
+  catch (error: any) {
+    errorMessage.value = error?.message || 'Failed to finish magic link sign in.'
+  }
+  finally {
+    if (code || tokenHash) {
+      window.history.replaceState({}, '', '/admin')
+    }
+  }
+}
+
 onMounted(async () => {
+  await handleAuthRedirectIfNeeded()
   await initializeAdmin()
 
   const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
