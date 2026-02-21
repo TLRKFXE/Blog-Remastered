@@ -14,7 +14,10 @@ import linkAttributes from 'markdown-it-link-attributes'
 import matter from 'gray-matter'
 import { defineConfig } from 'vite'
 
-export default defineConfig({
+export default defineConfig(({ command }) => {
+  const enableShiki = command === 'build' || process.env.VITE_DEV_SHIKI === '1'
+
+  return {
   resolve: {
     alias: {
       '~/': `${resolve(__dirname, 'src')}/`,
@@ -45,13 +48,15 @@ export default defineConfig({
       wrapperClasses: 'prose slide-enter-content',
       headEnabled: true,
       async markdownItSetup(md) {
-        md.use(await Shiki({
-          defaultColor: false,
-          themes: {
-            light: 'vitesse-light',
-            dark: 'vitesse-dark',
-          },
-        }))
+        if (enableShiki) {
+          md.use(await Shiki({
+            defaultColor: false,
+            themes: {
+              light: 'vitesse-light',
+              dark: 'vitesse-dark',
+            },
+          }))
+        }
         md.use(anchor, {
           permalink: anchor.permalink.linkInsideHeader({
             symbol: '#',
@@ -95,6 +100,7 @@ export default defineConfig({
       defaultStyle: 'display:inline-block;vertical-align:middle;',
     }),
   ],
+}
 })
 
 function getFrontmatter(path: string) {

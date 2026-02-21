@@ -1,4 +1,46 @@
 <script setup lang="ts">
+const brandText = "TLRK";
+const brandLetters = brandText.split("");
+const visibleCount = ref(0);
+
+let brandTimer: ReturnType<typeof setTimeout> | null = null;
+let direction: 1 | -1 = 1;
+
+function clearBrandTimer() {
+  if (brandTimer) {
+    clearTimeout(brandTimer);
+    brandTimer = null;
+  }
+}
+
+function scheduleBrandStep(delay: number) {
+  clearBrandTimer();
+  brandTimer = setTimeout(() => {
+    if (direction === 1) {
+      if (visibleCount.value < brandLetters.length) {
+        visibleCount.value += 1;
+      }
+
+      if (visibleCount.value >= brandLetters.length) {
+        direction = -1;
+        scheduleBrandStep(5000);
+        return;
+      }
+    } else {
+      if (visibleCount.value > 0) {
+        visibleCount.value -= 1;
+      }
+
+      if (visibleCount.value <= 0) {
+        direction = 1;
+        scheduleBrandStep(520);
+        return;
+      }
+    }
+
+    scheduleBrandStep(300);
+  }, delay);
+}
 
 const props = withDefaults(
   defineProps<{
@@ -17,6 +59,14 @@ const navClass = computed(() => {
 
   return "glass-nav";
 });
+
+onMounted(() => {
+  scheduleBrandStep(260);
+});
+
+onUnmounted(() => {
+  clearBrandTimer();
+});
 </script>
 
 <template>
@@ -27,9 +77,18 @@ const navClass = computed(() => {
     <nav class="max-w-6xl mx-auto px-6 h-14 flex items-center">
       <RouterLink
         to="/"
-        class="text-lg font-500 tracking-tight no-underline hover:opacity-80 transition-opacity"
+        class="text-2xl sm:text-3xl font-normal tracking-tight leading-none font-homemade no-underline hover:opacity-80 transition-opacity"
       >
-        TLRK
+        <span class="brand-text">
+          <span
+            v-for="(letter, index) in brandLetters"
+            :key="`${letter}-${index}`"
+            class="brand-letter"
+            :class="{ 'brand-letter--visible': index < visibleCount }"
+          >
+            {{ letter }}
+          </span>
+        </span>
       </RouterLink>
 
       <div class="flex-1" />
@@ -74,5 +133,22 @@ const navClass = computed(() => {
 .nav-transparent {
   background: transparent;
   border-bottom: 1px solid transparent;
+}
+
+.brand-text {
+  display: inline-flex;
+  align-items: baseline;
+  min-width: 4.2ch;
+}
+
+.brand-letter {
+  opacity: 0;
+  transform: translateY(0.04em);
+  transition: opacity 0.24s ease, transform 0.24s ease;
+}
+
+.brand-letter--visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 </style>

@@ -13,6 +13,28 @@ interface NavButton {
   disabled?: boolean;
 }
 
+interface TechIcon {
+  name: string;
+  icon: string;
+}
+
+interface TechIconGroup {
+  titleZh: string;
+  titleEn: string;
+  items: TechIcon[];
+}
+
+interface TechStackRow {
+  label: string;
+  value: string;
+}
+
+interface TechStackSection {
+  title: string;
+  rows?: TechStackRow[];
+  items?: string[];
+}
+
 const fullName = "TLRK";
 const contactEmail = "tlrkfx@gmail.com";
 const emailHref = `mailto:${contactEmail}`;
@@ -62,6 +84,176 @@ const navButtons: NavButton[] = [
   { label: "Blog", to: "/blog" },
   { label: "Projects (Coming Soon)", disabled: true },
 ];
+
+const techIconGroups: TechIconGroup[] = [
+  {
+    titleZh: "前端核心",
+    titleEn: "Frontend Core",
+    items: [
+      { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+      { name: "Vue 3", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" },
+      { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+      { name: "Vue Router", icon: "https://api.iconify.design/ri:route-line.svg?color=%2342d392" },
+      { name: "TanStack Query", icon: "https://cdn.simpleicons.org/tanstack/ff4154" },
+      { name: "Pinia", icon: "https://cdn.simpleicons.org/pinia" },
+      { name: "VueUse", icon: "https://cdn.simpleicons.org/vueuse" },
+      { name: "VeeValidate", icon: "https://api.iconify.design/ri:shield-check-line.svg?color=%2342d392" },
+      { name: "Yup", icon: "https://api.iconify.design/ri:check-double-line.svg?color=%2342d392" },
+      { name: "Vue Toastification", icon: "https://api.iconify.design/ri:notification-3-line.svg?color=%23f59e0b" },
+      { name: "Faker.js", icon: "https://api.iconify.design/ri:test-tube-line.svg?color=%23f97316" },
+    ],
+  },
+  {
+    titleZh: "UI 组件库",
+    titleEn: "UI Libraries & Component Systems",
+    items: [
+      { name: "shadcn/ui", icon: "https://cdn.simpleicons.org/shadcnui/ffffff" },
+      { name: "DaisyUI", icon: "https://cdn.simpleicons.org/daisyui" },
+      { name: "PrimeVue", icon: "https://cdn.simpleicons.org/primevue" },
+      { name: "Inspira UI", icon: "https://api.iconify.design/ri:sparkling-line.svg?color=%23818cf8" },
+      { name: "Hero UI", icon: "https://cdn.simpleicons.org/heroui/38bdf8" },
+      { name: "Radix UI", icon: "https://cdn.simpleicons.org/radixui/c084fc" },
+      { name: "Headless UI", icon: "https://cdn.simpleicons.org/headlessui" },
+      { name: "Fluent UI", icon: "https://api.iconify.design/ri:apps-2-line.svg?color=%230ea5e9" },
+      { name: "Base UI", icon: "https://api.iconify.design/ri:layout-2-line.svg?color=%238b8b8b" },
+      { name: "Material UI", icon: "https://cdn.simpleicons.org/mui" },
+      { name: "Ant Design", icon: "https://cdn.simpleicons.org/antdesign" },
+      { name: "Floating UI", icon: "https://api.iconify.design/ri:drag-move-2-line.svg?color=%238b8b8b" },
+    ],
+  },
+  {
+    titleZh: "后端与数据",
+    titleEn: "Backend & Data",
+    items: [
+      { name: "Node.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+      { name: "NestJS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-original.svg" },
+      { name: "Express", icon: "https://cdn.simpleicons.org/express/ffffff" },
+      { name: "GraphQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg" },
+      { name: "RESTful API", icon: "https://cdn.simpleicons.org/openapiinitiative/6ba539" },
+      { name: "Supabase", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg" },
+      { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+      { name: "Prisma", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prisma/prisma-original.svg" },
+      { name: "Drizzle", icon: "https://cdn.simpleicons.org/drizzle" },
+      { name: "Sequelize", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sequelize/sequelize-original.svg" },
+    ],
+  },
+  {
+    titleZh: "工具链与交付",
+    titleEn: "Tooling & Delivery",
+    items: [
+      { name: "pnpm", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pnpm/pnpm-original.svg" },
+      { name: "Vite", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg" },
+      { name: "Vitest", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitest/vitest-original.svg" },
+      { name: "Tailwind CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
+      { name: "UnoCSS", icon: "https://cdn.simpleicons.org/unocss" },
+      { name: "ESLint", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/eslint/eslint-original.svg" },
+      { name: "Prettier", icon: "https://cdn.simpleicons.org/prettier" },
+      { name: "Apifox", icon: "https://cdn.simpleicons.org/apifox" },
+      { name: "dotenvx", icon: "https://cdn.simpleicons.org/dotenv" },
+      { name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
+      { name: "Docker", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
+      { name: "Nginx", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" },
+      { name: "Cloudflare", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cloudflare/cloudflare-original.svg" },
+    ],
+  },
+  {
+    titleZh: "设计协作",
+    titleEn: "Design",
+    items: [
+      { name: "Figma", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" },
+      { name: "Dribbble", icon: "https://cdn.simpleicons.org/dribbble" },
+    ],
+  },
+];
+
+const techStackSections: TechStackSection[] = [
+  {
+    title: "Frontend Core",
+    rows: [
+      { label: "Language", value: "TypeScript" },
+      { label: "Framework", value: "Vue 3 / React" },
+      { label: "Routing", value: "Vue Router" },
+      { label: "State Management", value: "Pinia" },
+      { label: "Data Fetching & Server State", value: "TanStack Query" },
+      { label: "Form & Validation", value: "VeeValidate / Yup" },
+      { label: "Composition Utilities", value: "VueUse" },
+    ],
+  },
+  {
+    title: "UI Libraries & Component Systems",
+    rows: [
+      { label: "Full Design System", value: "Material UI / Ant Design / Fluent UI / PrimeVue" },
+      { label: "Utility / Style-based UI", value: "shadcn/ui / DaisyUI / Hero UI / Inspira UI" },
+      { label: "Headless / Unstyled Components", value: "Radix UI / Headless UI / Base UI" },
+      { label: "Interaction Engine", value: "Floating UI" },
+    ],
+  },
+  {
+    title: "Backend & Data",
+    rows: [
+      { label: "Runtime", value: "Node.js" },
+      { label: "Framework", value: "NestJS / Express.js" },
+      { label: "API Architecture", value: "RESTful / GraphQL" },
+      { label: "Database", value: "PostgreSQL" },
+      { label: "ORM", value: "Prisma / Drizzle / Sequelize" },
+      { label: "BaaS", value: "Supabase" },
+    ],
+  },
+  {
+    title: "Tooling & Delivery",
+    rows: [
+      { label: "Package Management", value: "pnpm" },
+      { label: "Build Tools", value: "Vite" },
+      { label: "Testing", value: "Vitest" },
+      { label: "CSS Engine", value: "Tailwind CSS / UnoCSS" },
+      { label: "Lint & Format", value: "ESLint + Prettier" },
+      { label: "API Debugging", value: "Apifox" },
+      { label: "Mock & Dev Utilities", value: "Faker.js" },
+      { label: "Environment Management", value: "Dotenvx" },
+      { label: "Version Control", value: "Git" },
+      { label: "Container", value: "Docker" },
+      { label: "Reverse Proxy", value: "Nginx" },
+      { label: "Edge / CDN / DNS", value: "Cloudflare" },
+    ],
+  },
+  {
+    title: "Design",
+    items: ["Figma", "Dribbble"],
+  },
+];
+
+const failedTechIcons = ref<Set<string>>(new Set());
+
+function getTechIconsForSection(sectionTitle: string) {
+  return techIconGroups.find(group => group.titleEn === sectionTitle)?.items ?? [];
+}
+
+function onTechIconError(name: string) {
+  if (failedTechIcons.value.has(name))
+    return;
+
+  const next = new Set(failedTechIcons.value);
+  next.add(name);
+  failedTechIcons.value = next;
+}
+
+function isTechIconFailed(name: string) {
+  return failedTechIcons.value.has(name);
+}
+
+function techIconFallback(name: string) {
+  const letters = name
+    .split(/[\s./+-]+/)
+    .filter(Boolean)
+    .map(part => part[0]?.toUpperCase() ?? "")
+    .join("")
+    .slice(0, 2);
+
+  if (letters.length >= 2)
+    return letters;
+
+  return name.slice(0, 2).toUpperCase();
+}
 
 function clearIntervals() {
   if (typingInterval) clearInterval(typingInterval);
@@ -299,60 +491,60 @@ onUnmounted(() => {
           </h3>
 
           <div class="space-y-3">
-            <p>
-              <strong>Frontend Engineering:</strong> Vue 3, React, Vue Router,
-              Pinia, VueUse, VeeValidate, Yup, Vue Toastification, Faker.js
-            </p>
-            <p>
-              <strong>Backend & API:</strong> Node.js, NestJS, Express.js,
-              GraphQL, RESTful API, dotenv
-            </p>
-            <p>
-              <strong>Data Layer:</strong> Supabase, PostgreSQL, Prisma,
-              Sequelize, Drizzle
-            </p>
-            <p>
-              <strong>UI & Design Systems:</strong> shadcn/ui, DaisyUI,
-              PrimeVue, Inspira UI, Hero UI, Radix UI, Headless UI, Fluent UI,
-              Base UI, Material UI, Ant Design, Floating UI
-            </p>
-            <p>
-              <strong>Build, Tooling & Quality:</strong> pnpm, Vite, Vitest,
-              Tailwind CSS, UnoCSS, Nodemon, ESLint, Prettier
-            </p>
-            <p>
-              <strong>Infrastructure & Delivery:</strong> Cloudflare, Nginx,
-              Docker
-            </p>
-            <p><strong>Design:</strong> Figma</p>
-          </div>
+            <details
+              v-for="section in techStackSections"
+              :key="section.title"
+              class="tech-icons-disclosure"
+            >
+              <summary class="tech-icons-summary">
+                <span>{{ section.title }}</span>
+                <span class="i-ri-arrow-down-s-line tech-icons-chevron" />
+              </summary>
 
-          <div class="space-y-3 text-sm opacity-86 leading-relaxed mt-5">
-            <p>
-              <strong>前端工程：</strong>Vue 3、React、Vue
-              Router、Pinia、VueUse、VeeValidate、Yup、Vue
-              Toastification、Faker.js
-            </p>
-            <p>
-              <strong>后端与接口：</strong
-              >Node.js、NestJS、Express.js、GraphQL、RESTful API、dotenv
-            </p>
-            <p>
-              <strong>数据层：</strong
-              >Supabase、PostgreSQL、Prisma、Sequelize、Drizzle
-            </p>
-            <p>
-              <strong>UI 与组件体系：</strong
-              >shadcn/ui、DaisyUI、PrimeVue、Inspira UI、Hero UI、Radix
-              UI、Headless UI、Fluent UI、Base UI、Material UI、Ant
-              Design、Floating UI
-            </p>
-            <p>
-              <strong>构建、工具与规范：</strong>pnpm、Vite、Vitest、Tailwind
-              CSS、UnoCSS、Nodemon、ESLint、Prettier
-            </p>
-            <p><strong>基础设施与交付：</strong>Cloudflare、Nginx、Docker</p>
-            <p><strong>设计协作：</strong>Figma</p>
+              <div class="tech-icons-content">
+                <ul v-if="section.rows" class="tech-stack-list">
+                  <li
+                    v-for="row in section.rows"
+                    :key="`${section.title}-${row.label}`"
+                  >
+                    <strong>{{ row.label }}:</strong> {{ row.value }}
+                  </li>
+                </ul>
+                <ul v-else-if="section.items" class="tech-stack-list">
+                  <li
+                    v-for="item in section.items"
+                    :key="`${section.title}-${item}`"
+                  >
+                    {{ item }}
+                  </li>
+                </ul>
+
+                <div
+                  v-if="getTechIconsForSection(section.title).length > 0"
+                  class="tech-icons-grid mt-2"
+                >
+                  <div
+                    v-for="item in getTechIconsForSection(section.title)"
+                    :key="`${section.title}-${item.name}`"
+                    class="tech-icon-wrap"
+                  >
+                    <img
+                      v-if="!isTechIconFailed(item.name)"
+                      :src="item.icon"
+                      :alt="item.name"
+                      class="tech-icon-image"
+                      loading="lazy"
+                      decoding="async"
+                      @error="onTechIconError(item.name)"
+                    >
+                    <span v-else class="tech-icon-fallback">
+                      {{ techIconFallback(item.name) }}
+                    </span>
+                    <span class="tech-icon-tooltip">{{ item.name }}</span>
+                  </div>
+                </div>
+              </div>
+            </details>
           </div>
 
           <div class="my-5 border-t border-base opacity-60" />
@@ -480,6 +672,23 @@ onUnmounted(() => {
   margin: 0;
 }
 
+.tech-stack-section {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.tech-stack-list {
+  margin: 0;
+  padding-left: 1.15rem;
+  display: grid;
+  gap: 0.28rem;
+  opacity: 0.9;
+}
+
+.tech-stack-list li {
+  line-height: 1.65;
+}
+
 :root:not(.dark) .glass-icon {
   background: rgba(0, 0, 0, 0.04);
   border-color: rgba(0, 0, 0, 0.1);
@@ -505,5 +714,140 @@ onUnmounted(() => {
 :root:not(.dark) .hero-btn--primary {
   background: rgba(0, 0, 0, 0.06);
   border-color: rgba(0, 0, 0, 0.18);
+}
+
+.tech-icons-disclosure {
+  border: 1px dashed var(--c-border);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 0.25rem 0.75rem 0.65rem;
+}
+
+.tech-icons-summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  font-size: 0.86rem;
+  opacity: 0.86;
+  user-select: none;
+}
+
+.tech-icons-summary::-webkit-details-marker {
+  display: none;
+}
+
+.tech-icons-chevron {
+  transition: transform 0.25s ease;
+  opacity: 0.72;
+}
+
+.tech-icons-disclosure[open] .tech-icons-chevron {
+  transform: rotate(180deg);
+}
+
+.tech-icons-content {
+  margin-top: 0.3rem;
+  display: grid;
+  gap: 0.9rem;
+}
+
+.tech-icons-group-title {
+  margin: 0 0 0.45rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  opacity: 0.64;
+}
+
+.tech-icons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(36px, 1fr));
+  gap: 0.65rem 0.8rem;
+}
+
+.tech-icon-wrap {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+
+.tech-icon-wrap:hover {
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.04);
+  transform: translateY(-1px);
+}
+
+.tech-icon-image {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.tech-icon-fallback {
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  font-size: 0.62rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.tech-icon-tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(3px);
+  padding: 0.32rem 0.5rem;
+  border-radius: 8px;
+  background: #fff;
+  color: #111;
+  font-size: 0.74rem;
+  line-height: 1;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  z-index: 20;
+}
+
+.tech-icon-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: #fff;
+}
+
+.tech-icon-wrap:hover .tech-icon-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+:root:not(.dark) .tech-icons-disclosure {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+:root:not(.dark) .tech-icon-wrap:hover {
+  border-color: rgba(0, 0, 0, 0.14);
+  background: rgba(0, 0, 0, 0.03);
+}
+
+:root:not(.dark) .tech-icon-fallback {
+  background: rgba(0, 0, 0, 0.06);
 }
 </style>
