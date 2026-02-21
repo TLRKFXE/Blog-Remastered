@@ -9,6 +9,6 @@ title: Blog
   <p class="text-secondary text-sm">Thoughts, ideas, and explorations.</p>
 </div>
 
-<ListPosts />
+<ListPosts show-categories />
 
 </div>

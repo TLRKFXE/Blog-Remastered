@@ -82,7 +82,7 @@ const socialLinks: SocialLink[] = [
 
 const navButtons: NavButton[] = [
   { label: "Blog", to: "/blog" },
-  { label: "Projects (Coming Soon)", disabled: true },
+  { label: "Projects", to: "/projects" },
 ];
 
 const techIconGroups: TechIconGroup[] = [

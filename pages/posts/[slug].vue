@@ -14,6 +14,7 @@ interface RemotePostDetail {
   description: string | null
   content_md: string
   cover_url: string | null
+  category: string | null
   published_at: string | null
   created_at: string
 }
@@ -25,6 +26,13 @@ interface GalleryItem {
 
 const route = useRoute('/posts/[slug]')
 const router = useRouter()
+
+const CATEGORY_LABELS = {
+  code: 'Code',
+  life: 'Life',
+  game: 'Game',
+  idea: 'Idea',
+} as const
 
 const loading = ref(true)
 const post = ref<RemotePostDetail | null>(null)
@@ -139,6 +147,16 @@ const publishDate = computed(() => {
 
   return formatDate(post.value.published_at || post.value.created_at)
 })
+
+const category = computed<'code' | 'life' | 'game' | 'idea'>(() => {
+  const value = post.value?.category?.toLowerCase().trim()
+  if (value === 'code' || value === 'life' || value === 'game' || value === 'idea')
+    return value
+
+  return 'idea'
+})
+
+const categoryLabel = computed(() => CATEGORY_LABELS[category.value])
 
 useHead(() => {
   if (!post.value) {
@@ -326,7 +344,7 @@ async function loadRemotePost() {
 
   const { data, error } = await supabase
     .from('posts')
-    .select('slug, title, description, content_md, cover_url, published_at, created_at')
+    .select('slug, title, description, content_md, cover_url, category, published_at, created_at')
     .eq('slug', slug)
     .eq('status', 'published')
     .maybeSingle()
@@ -379,7 +397,12 @@ onBeforeUnmount(() => {
         <p v-if="post.description" class="text-secondary mt-0 mb-3">
           {{ post.description }}
         </p>
-        <time class="text-sm text-secondary font-mono">{{ publishDate }}</time>
+        <div class="flex items-center gap-2.5">
+          <span class="post-category-badge" :class="`post-category-badge--${category}`">
+            {{ categoryLabel }}
+          </span>
+          <time class="text-sm text-secondary font-mono">{{ publishDate }}</time>
+        </div>
       </div>
 
       <img
@@ -505,6 +528,40 @@ onBeforeUnmount(() => {
 
 .cover-image {
   cursor: zoom-in;
+}
+
+.post-category-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 3rem;
+  border-radius: 9999px;
+  border: 1px solid var(--c-border);
+  padding: 0.15rem 0.58rem;
+  font-size: 0.67rem;
+  font-family: 'JetBrains Mono', monospace;
+  line-height: 1.2;
+  opacity: 0.9;
+}
+
+.post-category-badge--code {
+  border-color: rgba(99, 102, 241, 0.45);
+  color: #818cf8;
+}
+
+.post-category-badge--life {
+  border-color: rgba(52, 211, 153, 0.42);
+  color: #34d399;
+}
+
+.post-category-badge--game {
+  border-color: rgba(250, 204, 21, 0.45);
+  color: #facc15;
+}
+
+.post-category-badge--idea {
+  border-color: rgba(244, 114, 182, 0.45);
+  color: #f472b6;
 }
 
 .lightbox {

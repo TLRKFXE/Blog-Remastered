@@ -101,12 +101,13 @@ onUnmounted(() => {
         >
           Blog
         </RouterLink>
-        <span
-          class="nav-link text-sm opacity-45 cursor-not-allowed"
-          title="Projects coming soon"
+        <RouterLink
+          to="/projects"
+          class="nav-link text-sm"
+          active-class="!opacity-100"
         >
-          Projects (Coming Soon)
-        </span>
+          Projects
+        </RouterLink>
 
         <div class="w-px h-4 bg-current opacity-15" />
 

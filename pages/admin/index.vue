@@ -6,11 +6,13 @@ import { ADMIN_EMAIL, isAllowedAdminEmail, supabase } from '~/lib/supabase'
 import { formatDate } from '~/composables'
 
 type PostStatus = 'draft' | 'published'
+type PostCategory = 'code' | 'life' | 'game' | 'idea'
 type GalleryLayout = 'scroll'
 
 interface AdminPostForm {
   slug: string
   title: string
+  category: PostCategory
   description: string
   content_md: string
   cover_url: string
@@ -22,6 +24,7 @@ interface AdminPostItem {
   id: string
   slug: string
   title: string
+  category: PostCategory
   description: string | null
   content_md: string
   cover_url: string | null
@@ -54,6 +57,7 @@ const galleryLayout = ref<GalleryLayout>('scroll')
 const form = ref<AdminPostForm>({
   slug: '',
   title: '',
+  category: 'idea',
   description: '',
   content_md: '',
   cover_url: '',
@@ -117,6 +121,7 @@ function createEmptyForm(): AdminPostForm {
   return {
     slug: '',
     title: '',
+    category: 'idea',
     description: '',
     content_md: '',
     cover_url: '',
@@ -137,6 +142,7 @@ function selectPost(post: AdminPostItem) {
   form.value = {
     slug: post.slug,
     title: post.title,
+    category: post.category || 'idea',
     description: post.description || '',
     content_md: post.content_md,
     cover_url: post.cover_url || '',
@@ -343,7 +349,7 @@ async function loadPosts() {
 
   const { data, error } = await supabase
     .from('posts')
-    .select('id, slug, title, description, content_md, cover_url, status, published_at, created_at, updated_at')
+    .select('id, slug, title, category, description, content_md, cover_url, status, published_at, created_at, updated_at')
     .order('updated_at', { ascending: false })
 
   if (error) {
@@ -380,6 +386,7 @@ async function savePost() {
     const payload = {
       slug,
       title: form.value.title.trim(),
+      category: form.value.category,
       description: form.value.description.trim() || null,
       content_md: form.value.content_md,
       cover_url: form.value.cover_url.trim() || null,
@@ -617,7 +624,10 @@ onUnmounted(() => {
             >
               <div class="flex items-center justify-between gap-3">
                 <strong class="text-sm truncate">{{ item.title }}</strong>
-                <span class="text-xs opacity-55 uppercase">{{ item.status }}</span>
+                <div class="flex items-center gap-2">
+                  <span class="text-xs opacity-55 uppercase">{{ item.category || 'idea' }}</span>
+                  <span class="text-xs opacity-55 uppercase">{{ item.status }}</span>
+                </div>
               </div>
               <div class="text-xs opacity-55 mt-1 font-mono">
                 {{ item.slug }}
@@ -665,7 +675,7 @@ onUnmounted(() => {
             >
           </div>
 
-          <div class="grid sm:grid-cols-2 gap-3">
+          <div class="grid sm:grid-cols-3 gap-3">
             <div>
               <label class="text-xs uppercase opacity-60">Title</label>
               <input
@@ -684,6 +694,19 @@ onUnmounted(() => {
               >
                 <option value="draft">draft</option>
                 <option value="published">published</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="text-xs uppercase opacity-60">Category</label>
+              <select
+                v-model="form.category"
+                class="w-full mt-1 bg-transparent border border-base rounded px-3 py-2 text-sm"
+              >
+                <option value="code">Code</option>
+                <option value="life">Life</option>
+                <option value="game">Game</option>
+                <option value="idea">Idea</option>
               </select>
             </div>
           </div>
