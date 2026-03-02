@@ -36,7 +36,8 @@ const CATEGORY_LABELS = {
 
 const loading = ref(true)
 const post = ref<RemotePostDetail | null>(null)
-const lightboxImage = ref<string | null>(null)
+const lightboxImage = ref('')
+const lightboxVisible = ref(false)
 const articleRef = ref<HTMLElement | null>(null)
 const galleryCleanupFns: Array<() => void> = []
 
@@ -217,6 +218,7 @@ function onArticleClick(event: MouseEvent) {
 
   event.preventDefault()
   lightboxImage.value = image.currentSrc || image.src
+  lightboxVisible.value = true
 }
 
 function cleanupGalleryInteractions() {
@@ -336,7 +338,12 @@ function setupGalleryInteractions() {
 }
 
 function closeLightbox() {
-  lightboxImage.value = null
+  lightboxVisible.value = false
+}
+
+function clearLightboxImage() {
+  if (!lightboxVisible.value)
+    lightboxImage.value = ''
 }
 
 function goBack() {
@@ -449,16 +456,18 @@ onBeforeUnmount(() => {
       </div>
     </article>
 
-    <Transition name="fade">
+    <Transition name="lightbox-fade" @after-leave="clearLightboxImage">
       <div
-        v-if="lightboxImage"
+        v-show="lightboxVisible"
         class="lightbox"
-        @click="closeLightbox"
+        @click.self="closeLightbox"
       >
         <img
+          v-if="lightboxImage"
           :src="lightboxImage"
           alt="preview"
           class="lightbox-image"
+          @click.stop
         >
       </div>
     </Transition>
@@ -606,6 +615,8 @@ onBeforeUnmount(() => {
   align-items: center;
   justify-content: center;
   padding: 2rem;
+  will-change: opacity;
+  contain: paint;
 }
 
 .lightbox-image {
@@ -613,15 +624,17 @@ onBeforeUnmount(() => {
   max-height: 88vh;
   object-fit: contain;
   border-radius: 10px;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.2s ease;
+.lightbox-fade-enter-active,
+.lightbox-fade-leave-active {
+  transition: opacity 0.14s ease;
 }
 
-.fade-enter-from,
-.fade-leave-to {
+.lightbox-fade-enter-from,
+.lightbox-fade-leave-to {
   opacity: 0;
 }
 </style>
