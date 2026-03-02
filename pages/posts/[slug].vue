@@ -92,7 +92,7 @@ function buildGalleryHtml(items: GalleryItem[]) {
     return ''
 
   const cards = items.map((item) => {
-    const caption = item.caption ? `<figcaption>${escapeHtml(item.caption)}</figcaption>` : ''
+    const caption = item.caption ? `<figcaption>${md.renderInline(item.caption)}</figcaption>` : ''
     return `
       <figure class="gallery-card">
         <img
