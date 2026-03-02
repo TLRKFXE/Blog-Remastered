@@ -114,21 +114,45 @@ function enhanceContentImages(html: string) {
   return html.replace(/<img\s+/g, '<img data-lightbox="true" class="body-image" loading="lazy" ')
 }
 
+function parseCenterBlocks(markdown: string) {
+  const centerRegex = /\[center\]([\s\S]*?)\[\/center\]/g
+  const centerPlaceholders: string[] = []
+
+  const transformed = markdown.replace(centerRegex, (_, content: string) => {
+    const marker = `@@CENTER_${centerPlaceholders.length}@@`
+    const inner = content.trim()
+    const renderedInner = inner ? md.render(inner) : ''
+    centerPlaceholders.push(`<div class="md-center">${renderedInner}</div>`)
+    return marker
+  })
+
+  return {
+    transformed,
+    centerPlaceholders,
+  }
+}
+
 function renderWithGalleries(markdown: string) {
   const galleryRegex = /\[gallery-scroll\]([\s\S]*?)\[\/gallery-scroll\]/g
   const placeholders: string[] = []
 
-  const transformed = markdown.replace(galleryRegex, (_, content: string) => {
+  const galleryTransformed = markdown.replace(galleryRegex, (_, content: string) => {
     const items = parseGalleryLines(content)
     const marker = `@@GALLERY_${placeholders.length}@@`
     placeholders.push(buildGalleryHtml(items))
     return marker
   })
 
+  const { transformed, centerPlaceholders } = parseCenterBlocks(galleryTransformed)
+
   let html = enhanceContentImages(md.render(transformed))
 
   placeholders.forEach((galleryHtml, index) => {
     html = html.replace(`@@GALLERY_${index}@@`, galleryHtml)
+  })
+
+  centerPlaceholders.forEach((centerHtml, index) => {
+    html = html.replace(`@@CENTER_${index}@@`, centerHtml)
   })
 
   return html
@@ -471,6 +495,15 @@ onBeforeUnmount(() => {
 :deep(.prose pre code) {
   overflow-wrap: normal;
   word-break: normal;
+}
+
+:deep(.prose .md-center) {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+:deep(.prose .md-center > *:last-child) {
+  margin-bottom: 0;
 }
 
 :deep(.prose .gallery-scroll) {

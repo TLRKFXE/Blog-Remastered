@@ -806,7 +806,7 @@ onUnmounted(() => {
               placeholder="# Hello Tokyo"
             />
             <p class="text-xs opacity-45 mt-2 mb-0">
-              Tip: multi-image horizontal block syntax: `[gallery-scroll] ... [/gallery-scroll]`
+              Tip: gallery syntax `[gallery-scroll] ... [/gallery-scroll]`, centered block syntax `[center] ... [/center]`.
             </p>
           </div>
 
