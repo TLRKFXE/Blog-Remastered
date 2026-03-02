@@ -35,6 +35,7 @@ interface AdminPostItem {
 }
 
 const router = useRouter()
+const MEDIA_BUCKET = 'blog-media'
 
 const loading = ref(true)
 const submitting = ref(false)
@@ -265,7 +266,7 @@ async function uploadImage(file: File, folder: string) {
   const path = makeFilePath(folder, file)
 
   const { error } = await supabase.storage
-    .from('post-media')
+    .from(MEDIA_BUCKET)
     .upload(path, file, {
       upsert: false,
       contentType: file.type || 'application/octet-stream',
@@ -275,7 +276,7 @@ async function uploadImage(file: File, folder: string) {
     throw error
 
   const { data } = supabase.storage
-    .from('post-media')
+    .from(MEDIA_BUCKET)
     .getPublicUrl(path)
 
   return data.publicUrl
