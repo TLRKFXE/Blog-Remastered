@@ -90,76 +90,139 @@ const techIconGroups: TechIconGroup[] = [
     titleZh: "前端核心",
     titleEn: "Frontend Core",
     items: [
-      { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
-      { name: "Vue 3", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" },
-      { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-      { name: "Vue Router", icon: "https://api.iconify.design/ri:route-line.svg?color=%2342d392" },
+      {
+        name: "TypeScript",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+      },
+      {
+        name: "Vue 3",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg",
+      },
+      {
+        name: "React",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+      },
+      {
+        name: "Vue Router",
+        icon: "https://api.iconify.design/ri:route-line.svg?color=%2342d392",
+      },
       { name: "Pinia", icon: "https://cdn.simpleicons.org/pinia" },
-      { name: "TanStack Query", icon: "https://cdn.simpleicons.org/tanstack/ff4154" },
-      { name: "VeeValidate", icon: "https://api.iconify.design/ri:shield-check-line.svg?color=%2342d392" },
-      { name: "Yup", icon: "https://api.iconify.design/ri:check-double-line.svg?color=%2342d392" },
+      {
+        name: "TanStack Query",
+        icon: "https://cdn.simpleicons.org/tanstack/ff4154",
+      },
+      {
+        name: "VeeValidate",
+        icon: "https://api.iconify.design/ri:shield-check-line.svg?color=%2342d392",
+      },
+      {
+        name: "Yup",
+        icon: "https://api.iconify.design/ri:check-double-line.svg?color=%2342d392",
+      },
       { name: "VueUse", icon: "https://cdn.simpleicons.org/vueuse" },
-    ],
-  },
-  {
-    titleZh: "UI 组件库",
-    titleEn: "UI Libraries & Component Systems",
-    items: [
-      { name: "Material UI", icon: "https://cdn.simpleicons.org/mui" },
-      { name: "Ant Design", icon: "https://cdn.simpleicons.org/antdesign" },
-      { name: "Fluent UI", icon: "https://api.iconify.design/ri:apps-2-line.svg?color=%230ea5e9" },
-      { name: "PrimeVue", icon: "https://cdn.simpleicons.org/primevue" },
-      { name: "shadcn/ui", icon: "https://cdn.simpleicons.org/shadcnui/ffffff" },
-      { name: "DaisyUI", icon: "https://cdn.simpleicons.org/daisyui" },
-      { name: "Hero UI", icon: "https://cdn.simpleicons.org/heroui/38bdf8" },
-      { name: "Inspira UI", icon: "https://api.iconify.design/ri:sparkling-line.svg?color=%23818cf8" },
-      { name: "Radix UI", icon: "https://cdn.simpleicons.org/radixui/c084fc" },
-      { name: "Headless UI", icon: "https://cdn.simpleicons.org/headlessui" },
-      { name: "Base UI", icon: "https://api.iconify.design/ri:layout-2-line.svg?color=%238b8b8b" },
-      { name: "Floating UI", icon: "https://api.iconify.design/ri:drag-move-2-line.svg?color=%238b8b8b" },
     ],
   },
   {
     titleZh: "后端与数据",
     titleEn: "Backend & Data",
     items: [
-      { name: "Node.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
-      { name: "NestJS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-original.svg" },
-      { name: "Express.js", icon: "https://cdn.simpleicons.org/express/ffffff" },
-      { name: "RESTful API", icon: "https://cdn.simpleicons.org/openapiinitiative/6ba539" },
-      { name: "GraphQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg" },
-      { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
-      { name: "Prisma", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prisma/prisma-original.svg" },
+      {
+        name: "Node.js",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+      },
+      {
+        name: "NestJS",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-original.svg",
+      },
+      {
+        name: "Express.js",
+        icon: "https://cdn.simpleicons.org/express/ffffff",
+      },
+      {
+        name: "RESTful API",
+        icon: "https://cdn.simpleicons.org/openapiinitiative/6ba539",
+      },
+      {
+        name: "GraphQL",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg",
+      },
+      {
+        name: "PostgreSQL",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+      },
+      {
+        name: "Prisma",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prisma/prisma-original.svg",
+      },
       { name: "Drizzle", icon: "https://cdn.simpleicons.org/drizzle" },
-      { name: "Sequelize", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sequelize/sequelize-original.svg" },
-      { name: "Supabase", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg" },
+      {
+        name: "Sequelize",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sequelize/sequelize-original.svg",
+      },
+      {
+        name: "Supabase",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg",
+      },
     ],
   },
   {
     titleZh: "工具链与交付",
     titleEn: "Tooling & Delivery",
     items: [
-      { name: "pnpm", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pnpm/pnpm-original.svg" },
-      { name: "Vite", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg" },
-      { name: "Vitest", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitest/vitest-original.svg" },
-      { name: "Tailwind CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
+      {
+        name: "pnpm",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pnpm/pnpm-original.svg",
+      },
+      {
+        name: "Vite",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg",
+      },
+      {
+        name: "Vitest",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitest/vitest-original.svg",
+      },
+      {
+        name: "Tailwind CSS",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+      },
       { name: "UnoCSS", icon: "https://cdn.simpleicons.org/unocss" },
-      { name: "ESLint", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/eslint/eslint-original.svg" },
+      {
+        name: "ESLint",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/eslint/eslint-original.svg",
+      },
       { name: "Prettier", icon: "https://cdn.simpleicons.org/prettier" },
       { name: "Apifox", icon: "https://cdn.simpleicons.org/apifox" },
-      { name: "Faker.js", icon: "https://api.iconify.design/ri:test-tube-line.svg?color=%23f97316" },
+      {
+        name: "Faker.js",
+        icon: "https://api.iconify.design/ri:test-tube-line.svg?color=%23f97316",
+      },
       { name: "Dotenvx", icon: "https://cdn.simpleicons.org/dotenv" },
-      { name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
-      { name: "Docker", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
-      { name: "Nginx", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" },
-      { name: "Cloudflare", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cloudflare/cloudflare-original.svg" },
+      {
+        name: "Git",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+      },
+      {
+        name: "Docker",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+      },
+      {
+        name: "Nginx",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg",
+      },
+      {
+        name: "Cloudflare",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cloudflare/cloudflare-original.svg",
+      },
     ],
   },
   {
     titleZh: "设计协作",
     titleEn: "Design",
     items: [
-      { name: "Figma", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" },
+      {
+        name: "Figma",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
+      },
       { name: "Dribbble", icon: "https://cdn.simpleicons.org/dribbble" },
     ],
   },
@@ -181,9 +244,18 @@ const techStackSections: TechStackSection[] = [
   {
     title: "UI Libraries & Component Systems",
     rows: [
-      { label: "Full Design System", value: "Material UI / Ant Design / Fluent UI / PrimeVue" },
-      { label: "Utility / Style-based UI", value: "shadcn/ui / DaisyUI / Hero UI / Inspira UI" },
-      { label: "Headless / Unstyled Components", value: "Radix UI / Headless UI / Base UI" },
+      {
+        label: "Full Design System",
+        value: "Material UI / Ant Design / Fluent UI / PrimeVue",
+      },
+      {
+        label: "Utility / Style-based UI",
+        value: "shadcn/ui / DaisyUI / Hero UI / Inspira UI",
+      },
+      {
+        label: "Headless / Unstyled Components",
+        value: "Radix UI / Headless UI / Base UI",
+      },
       { label: "Interaction Engine", value: "Floating UI" },
     ],
   },
@@ -224,12 +296,13 @@ const techStackSections: TechStackSection[] = [
 const failedTechIcons = ref<Set<string>>(new Set());
 
 function getTechIconsForSection(sectionTitle: string) {
-  return techIconGroups.find(group => group.titleEn === sectionTitle)?.items ?? [];
+  return (
+    techIconGroups.find((group) => group.titleEn === sectionTitle)?.items ?? []
+  );
 }
 
 function onTechIconError(name: string) {
-  if (failedTechIcons.value.has(name))
-    return;
+  if (failedTechIcons.value.has(name)) return;
 
   const next = new Set(failedTechIcons.value);
   next.add(name);
@@ -244,12 +317,11 @@ function techIconFallback(name: string) {
   const letters = name
     .split(/[\s./+-]+/)
     .filter(Boolean)
-    .map(part => part[0]?.toUpperCase() ?? "")
+    .map((part) => part[0]?.toUpperCase() ?? "")
     .join("")
     .slice(0, 2);
 
-  if (letters.length >= 2)
-    return letters;
+  if (letters.length >= 2) return letters;
 
   return name.slice(0, 2).toUpperCase();
 }
@@ -535,7 +607,7 @@ onUnmounted(() => {
                       loading="lazy"
                       decoding="async"
                       @error="onTechIconError(item.name)"
-                    >
+                    />
                     <span v-else class="tech-icon-fallback">
                       {{ techIconFallback(item.name) }}
                     </span>
@@ -775,7 +847,8 @@ onUnmounted(() => {
   place-items: center;
   border-radius: 10px;
   border: 1px solid transparent;
-  transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+  transition: border-color 0.2s ease, background-color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .tech-icon-wrap:hover {
