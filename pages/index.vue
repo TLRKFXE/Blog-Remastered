@@ -242,24 +242,6 @@ const techStackSections: TechStackSection[] = [
     ],
   },
   {
-    title: "UI Libraries & Component Systems",
-    rows: [
-      {
-        label: "Full Design System",
-        value: "Material UI / Ant Design / Fluent UI / PrimeVue",
-      },
-      {
-        label: "Utility / Style-based UI",
-        value: "shadcn/ui / DaisyUI / Hero UI / Inspira UI",
-      },
-      {
-        label: "Headless / Unstyled Components",
-        value: "Radix UI / Headless UI / Base UI",
-      },
-      { label: "Interaction Engine", value: "Floating UI" },
-    ],
-  },
-  {
     title: "Backend & Data",
     rows: [
       { label: "Runtime", value: "Node.js" },
